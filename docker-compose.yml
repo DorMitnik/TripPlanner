@@ -1,0 +1,39 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: tripdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build: ./backend
+    volumes:
+      - ./backend:/code
+    environment:
+      DATABASE_URL: postgresql://user:password@db:5432/tripdb
+      SECRET_KEY: "tripsecret"
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+
+  itinerary_generator:
+    build: ./itinerary_generator
+    volumes:
+      - ./itinerary_generator:/code
+    environment:
+      OPENAI_API_KEY: your_openai_api_key_here
+      SECRET_KEY: "tripsecret"
+    ports:
+      - "8001:8000"
+
+volumes:
+  postgres_data:
