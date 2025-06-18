@@ -16,7 +16,7 @@ http_bearer = HTTPBearer()
 def generate_itinerary(user_prompt: str, trip_id: int, db: Session = Depends(get_db),
                        credentials: str = Depends(http_bearer)):
     token_data = decrypt_token(credentials.credentials)
-    trip = db.query(Trip).where(Trip.id == trip_id and Trip.user_id == token_data.user_id).first()
+    trip = db.query(Trip).filter(Trip.id == trip_id, Trip.user_id == token_data.get("user_id")).first()
     if not trip:
         return Response(status_code=404, content=f"Trip with id: {trip_id} not found")
     trip_suggestion = generate_trip(trip=trip, user_prompt=user_prompt)

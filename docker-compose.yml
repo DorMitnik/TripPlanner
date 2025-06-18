@@ -30,10 +30,27 @@ services:
     volumes:
       - ./itinerary_generator:/code
     environment:
+      DATABASE_URL: postgresql://user:password@db:5432/tripdb
       OPENAI_API_KEY: your_openai_api_key_here
       SECRET_KEY: "tripsecret"
+    depends_on:
+      - db
     ports:
       - "8001:8000"
+
+  frontend:
+    build: ./frontend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      REACT_APP_API_URL: http://localhost:8000
+      REACT_APP_ITINERARY_URL: http://localhost:8001
+    depends_on:
+      - backend
+      - itinerary_generator
+    ports:
+      - "3000:3000"
 
 volumes:
   postgres_data:
