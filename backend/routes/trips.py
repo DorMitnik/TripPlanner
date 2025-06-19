@@ -23,8 +23,9 @@ def create_trip(trip: TripCreate, db: Session = Depends(get_db), credentials: st
 
 
 @trip_router.get("/trips")
-def list_trips(db: Session = Depends(get_db)):
-    return db.query(Trip).all()
+def list_trips(db: Session = Depends(get_db), credentials: str = Depends(http_bearer)):
+    token_data = decrypt_token(credentials.credentials)
+    return db.query(Trip).filter(Trip.user_id == token_data.user_id).all()
 
 
 @trip_router.delete("/trips")
