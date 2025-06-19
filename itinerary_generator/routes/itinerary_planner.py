@@ -20,7 +20,7 @@ def generate_itinerary(user_prompt: str, trip_id: int, db: Session = Depends(get
     if not trip:
         return Response(status_code=404, content=f"Trip with id: {trip_id} not found")
     trip_suggestion = generate_trip(trip=trip, user_prompt=user_prompt)
-    itinerary = Itinerary(user_id=trip.user_id, suggestion=trip_suggestion)
+    itinerary = Itinerary(trip_id=trip.id, suggestion=trip_suggestion)
     db.add(itinerary)
     db.commit()
     db.refresh(itinerary)

@@ -11,9 +11,10 @@ HEADERS = {
 
 def generate_trip(trip: Trip, user_prompt: str):
     prompt = (
-        f"You are a travel planner. Create a JSON itinerary for a trip to {trip.destination} "
+        f"You are a travel planner. Create a itinerary for a trip to {trip.destination} "
         f"from {trip.start_date.date()} to {trip.end_date.date()}. "
         f"User instructions: {user_prompt.strip()}.\n\n"
+        f"Up to 100 words"
     )
 
     body = {

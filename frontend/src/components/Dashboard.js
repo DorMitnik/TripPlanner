@@ -21,14 +21,15 @@ const Dashboard = ({ token, logout }) => {
     fetchTrips();
   }, []);
 
-  const fetchTrips = async () => {
-    try {
-      const response = await tripsAPI.getTrips();
-      setTrips(response.data);
-    } catch (err) {
-      setError('Failed to fetch trips');
-    }
-  };
+    const fetchTrips = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await tripsAPI.getTrips(token);
+        setTrips(response.data);
+      } catch (err) {
+        setError('Failed to fetch trips');
+      }
+    };
 
   const handleAddTrip = async (e) => {
     e.preventDefault();
