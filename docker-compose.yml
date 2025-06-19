@@ -31,7 +31,7 @@ services:
       - ./itinerary_generator:/code
     environment:
       DATABASE_URL: postgresql://user:password@db:5432/tripdb
-      OPENAI_API_KEY: your_openai_api_key_here
+      TOGETHER_API_KEY: c0cc2986a32364b755042e290267197e4ef893c9ccbe20ea2f1c380595d9f6dd
       SECRET_KEY: "tripsecret"
     depends_on:
       - db

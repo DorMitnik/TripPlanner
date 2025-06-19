@@ -5,8 +5,8 @@ from database import get_db
 from fastapi.security import HTTPBearer
 
 from services.auth import decrypt_token
-from itinerary_generator.models import Trip, Itinerary
-from itinerary_generator.services.trip import generate_trip
+from models import Trip, Itinerary
+from services.trip import generate_trip
 
 router = APIRouter(prefix='/itinerary')
 http_bearer = HTTPBearer()

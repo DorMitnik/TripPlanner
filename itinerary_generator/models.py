@@ -1,8 +1,8 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
 from sqlalchemy.dialects.postgresql import JSONB
+from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from database import Base
-
 
 class Trip(Base):
     __tablename__ = 'trips'
@@ -17,5 +17,5 @@ class Trip(Base):
 class Itinerary(Base):
     __tablename__ = 'itinerary'
     id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey("trip.id"))
+    user_id = Column(Integer, ForeignKey("trips.id"))
     suggestion = Column(JSONB, nullable=True)
