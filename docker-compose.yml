@@ -5,9 +5,9 @@ services:
     image: postgres:15
     restart: always
     environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: tripdb
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
     ports:
       - "5432:5432"
     volumes:
@@ -18,8 +18,8 @@ services:
     volumes:
       - ./backend:/code
     environment:
-      DATABASE_URL: postgresql://user:password@db:5432/tripdb
-      SECRET_KEY: "tripsecret"
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${DB_NAME}
+      SECRET_KEY: ${SECRET_KEY}
     depends_on:
       - db
     ports:
@@ -30,9 +30,9 @@ services:
     volumes:
       - ./itinerary_generator:/code
     environment:
-      DATABASE_URL: postgresql://user:password@db:5432/tripdb
-      TOGETHER_API_KEY: c0cc2986a32364b755042e290267197e4ef893c9ccbe20ea2f1c380595d9f6dd
-      SECRET_KEY: "tripsecret"
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${DB_NAME}
+      TOGETHER_API_KEY: ${TOGETHER_API_KEY}
+      SECRET_KEY: ${SECRET_KEY}
     depends_on:
       - db
     ports:
