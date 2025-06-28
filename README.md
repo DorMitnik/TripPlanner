@@ -59,3 +59,17 @@ This will start both the backend and frontend containers and link them together.
 
 ### Video Link - DEMO
 https://www.youtube.com/watch?v=oCjrcqmn194
+
+### .env file
+This project require .env file to work.
+example of .env:
+```
+POSTGRES_USER=
+POSTGRES_PASSWORD=
+DB_NAME=
+SECRET_KEY=
+TOGETHER_API_KEY=
+```
+to generate TOGETHER_API_KEY, go to 
+`https://docs.together.ai/docs/quickstart`
+you can generate with their guide
