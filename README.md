@@ -2,6 +2,10 @@
 
 TripPlanner is a web-based trip planning platform built with a microservices architecture. It includes backend and frontend services that help users register, authenticate, and create custom travel itineraries. The project is containerized with Docker and orchestrated using Docker Compose.
 
+## Architecture
+
+![img.png](img.png)
+
 ## Project Structure
 
 ```
