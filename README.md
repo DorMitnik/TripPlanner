@@ -62,7 +62,7 @@ This will start both the backend and frontend containers and link them together.
 - Typically served on: `http://localhost:3000` (based on React default)
 
 ### Video Link - DEMO
-https://www.youtube.com/watch?v=oCjrcqmn194
+https://youtu.be/lzhnO8eNAPc
 
 ### .env file
 This project require .env file to work.
